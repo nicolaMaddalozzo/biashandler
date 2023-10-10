@@ -138,8 +138,7 @@ class BiasInfo:
 
         N = self.crows_df.loc[:,col1].count()
         for i in tqdm(range(N)) :
-            if i == 10:
-                break    
+             
             data = {
                 col1: self.crows_df.iloc[i][col1],
                 col2: self.crows_df.iloc[i][col2]
@@ -541,7 +540,7 @@ def info_props(df_scores, alfa):
         p,f = test_pr(value[0], value[1], 0.5, alfa)
         test[len(test)] = f
         p_value[len(test)] = p
-    data = {'prop': pr_d, 'isBias': test.values(), "p_value":p_value.values()}
+    data = {'prop': pr_d, 'isBias': list(test.values()), "p_value":list(p_value.values())}
     return pd.DataFrame(data, index=["or","par","ran"])
 
 def test_pr(suc, n, prop_dic, alfa, alt = "two-sided") :
